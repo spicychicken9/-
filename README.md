@@ -283,6 +283,64 @@ mysql> select * from t_employee t1 inner join t_employee t2 on t1.empno = t2.mgr
 10 rows in set (0.00 sec)
 
 
+```
+
+## 四、用join完成查询
+
+## 五、运行演示的存储过程和函数
+
+```
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE proce_employee_sal1 ()
+    -> BEGIN
+    ->     SELECT sal
+    -> FROM t_employee;
+    -> END$$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> CALL proce_employee_sal1();
++------+
+| sal  |
++------+
+|  800 |
+| 1600 |
+| 1250 |
+| 2975 |
+| 1250 |
+| 2450 |
+| 3000 |
+| 5000 |
+| 1500 |
+| 1100 |
+|  950 |
+| 3000 |
+| 1300 |
++------+
+13 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION func_employee_sal (empno INT)
+    -> RETURNS DOUBLE
+    -> BEGIN
+    ->     RETURN (SELECT sal FROM t_employee WHERE t_employee.empno = empno);
+    -> END$$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+mysql> SELECT func_employee_sal(7369);
++-------------------------+
+| func_employee_sal(7369) |
++-------------------------+
+|                     800 |
++-------------------------+
+1 row in set (0.00 sec)
+
+
 
 
 
