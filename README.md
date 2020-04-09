@@ -18,6 +18,8 @@ mysql> show databases;
 
 ```
 
+![](https://github.com/spicychicken9/-/blob/master/1.png)
+
 ## 二、创建数据表、修改数据表等（承接上文的SQL代码）
 
 ```
