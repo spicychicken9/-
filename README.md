@@ -18,7 +18,7 @@ mysql> show databases;
 
 ```
 
-## 二、创建数据表、修改数据表（承接上文的SQL代码）
+## 二、创建数据表、修改数据表等（承接上文的SQL代码）
 
 ```
 mysql> use homework;
