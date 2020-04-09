@@ -182,6 +182,108 @@ mysql> SELECT * FROM t_dept;
 +--------+----------+------------+
 2 rows in set (0.00 sec)
 
+mysql> show tables;
++--------------------+
+| Tables_in_homework |
++--------------------+
+| t_dept             |
+| t_dept2            |
++--------------------+
+2 rows in set (0.00 sec)
+
+```
+
+## 三、演示老师上课时进行的命令
+
+```
+
+mysql>  create table t_employee(
+    ->     deptno INT NOT NULL,
+    -> empno INT  PRIMARY KEY,
+    -> ename VARCHAR(20),
+    -> job  VARCHAR(20),
+    ->     MGR  INT,
+    -> Hiredate Date,
+    -> sal    float,
+    -> comm   float
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO t_employee(empno, ename, job, MGR, Hiredate, sal, comm, deptno) VALUES
+    ->     (7369, "SMITH", "CLERK", 7902, "1981-03-12", 800.00, NULL, 20),
+    -> (7499, "ALLEN", "SALESMAN", 7698, "1982-03-12", 1600, 300, 30),
+    -> (7521, "WARD", "SALESMAN", 7698, "1838-03-12", 1250, 500, 30),
+    -> (7566, "JONES", "MANAGER", 7839, "1981-03-12", 2975, NULL, 20),
+    -> (7654, "MARTIN", "SALESMAN", 7698, "1981-01-12", 1250, 1400, 30),
+    -> (7698, "BLAKE", "MANAGER", 7839, "1985-03-12", 2450, NULL, 10),
+    -> (7788, "SCOTT", "ANALYST", 7566, "1981-03-12", 3000, NULL, 20),
+    -> (7839, "KING", "PRESIDENT", NULL, "1981-03-12", 5000, NULL, 10),
+    -> (7844, "TURNER", "SALESMAN", 7689, "1981-03-12", 1500, 0, 30),
+    -> (7878, "ADAMS", "CLERK", 7788, "1981-03-12", 1100, NULL,20),
+    -> (7900, "JAMES", "CLERK", 7698,"1981-03-12",  950, NULL, 30),
+    -> (7902, "FORD", "ANALYST", 7566, "1981-03-12", 3000, NULL, 20),
+    -> (7934, "MILLER", "CLERK", 7782, "1981-03-12", 1300, NULL, 10)
+    -> ;
+Query OK, 13 rows affected (0.00 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> DROP TABLE IF EXISTS t_dept;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE t_dept (
+    ->     deptno INT PRIMARY KEY,
+    -> dname VARCHAR(30),
+    -> loc VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO t_dept VALUES
+    -> (10, "ACCOUNTING", "NEW YORK"),
+    -> (20, "RESEARCH", "DALLAS"),
+    -> (30, "SALES", "CHICAGO"),
+    -> (40, "OPERATIONS", "BOSTON")
+    -> ;
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select *
+    -> from t_employee t1 inner join t_employee t2
+    -> on t1.empno = t2.mgr;
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+| deptno | empno | ename | job       | MGR  | Hiredate   | sal  | comm | deptno | empno | ename  | job      | MGR  | Hiredate   | sal  | comm |
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+|     20 |  7902 | FORD  | ANALYST   | 7566 | 1981-03-12 | 3000 | NULL |     20 |  7369 | SMITH  | CLERK    | 7902 | 1981-03-12 |  800 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7499 | ALLEN  | SALESMAN | 7698 | 1982-03-12 | 1600 |  300 |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7521 | WARD   | SALESMAN | 7698 | 1838-03-12 | 1250 |  500 |
+|     10 |  7839 | KING  | PRESIDENT | NULL | 1981-03-12 | 5000 | NULL |     20 |  7566 | JONES  | MANAGER  | 7839 | 1981-03-12 | 2975 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7654 | MARTIN | SALESMAN | 7698 | 1981-01-12 | 1250 | 1400 |
+|     10 |  7839 | KING  | PRESIDENT | NULL | 1981-03-12 | 5000 | NULL |     10 |  7698 | BLAKE  | MANAGER  | 7839 | 1985-03-12 | 2450 | NULL |
+|     20 |  7566 | JONES | MANAGER   | 7839 | 1981-03-12 | 2975 | NULL |     20 |  7788 | SCOTT  | ANALYST  | 7566 | 1981-03-12 | 3000 | NULL |
+|     20 |  7788 | SCOTT | ANALYST   | 7566 | 1981-03-12 | 3000 | NULL |     20 |  7878 | ADAMS  | CLERK    | 7788 | 1981-03-12 | 1100 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7900 | JAMES  | CLERK    | 7698 | 1981-03-12 |  950 | NULL |
+|     20 |  7566 | JONES | MANAGER   | 7839 | 1981-03-12 | 2975 | NULL |     20 |  7902 | FORD   | ANALYST  | 7566 | 1981-03-12 | 3000 | NULL |
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from t_employee t1 inner join t_employee t2 on t1.empno = t2.mgr;
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+| deptno | empno | ename | job       | MGR  | Hiredate   | sal  | comm | deptno | empno | ename  | job      | MGR  | Hiredate   | sal  | comm |
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+|     20 |  7902 | FORD  | ANALYST   | 7566 | 1981-03-12 | 3000 | NULL |     20 |  7369 | SMITH  | CLERK    | 7902 | 1981-03-12 |  800 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7499 | ALLEN  | SALESMAN | 7698 | 1982-03-12 | 1600 |  300 |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7521 | WARD   | SALESMAN | 7698 | 1838-03-12 | 1250 |  500 |
+|     10 |  7839 | KING  | PRESIDENT | NULL | 1981-03-12 | 5000 | NULL |     20 |  7566 | JONES  | MANAGER  | 7839 | 1981-03-12 | 2975 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7654 | MARTIN | SALESMAN | 7698 | 1981-01-12 | 1250 | 1400 |
+|     10 |  7839 | KING  | PRESIDENT | NULL | 1981-03-12 | 5000 | NULL |     10 |  7698 | BLAKE  | MANAGER  | 7839 | 1985-03-12 | 2450 | NULL |
+|     20 |  7566 | JONES | MANAGER   | 7839 | 1981-03-12 | 2975 | NULL |     20 |  7788 | SCOTT  | ANALYST  | 7566 | 1981-03-12 | 3000 | NULL |
+|     20 |  7788 | SCOTT | ANALYST   | 7566 | 1981-03-12 | 3000 | NULL |     20 |  7878 | ADAMS  | CLERK    | 7788 | 1981-03-12 | 1100 | NULL |
+|     10 |  7698 | BLAKE | MANAGER   | 7839 | 1985-03-12 | 2450 | NULL |     30 |  7900 | JAMES  | CLERK    | 7698 | 1981-03-12 |  950 | NULL |
+|     20 |  7566 | JONES | MANAGER   | 7839 | 1981-03-12 | 2975 | NULL |     20 |  7902 | FORD   | ANALYST  | 7566 | 1981-03-12 | 3000 | NULL |
++--------+-------+-------+-----------+------+------------+------+------+--------+-------+--------+----------+------+------------+------+------+
+10 rows in set (0.00 sec)
+
+
+
 
 
 
