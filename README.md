@@ -46,6 +46,8 @@ mysql> describe t_dept;
 +--------+-------------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
 
+![](https://github.com/spicychicken9/-/blob/master/2.png)
+
 # 2.向表格t_dept中添加字段；
 
 mysql> ALTER TABLE t_dept
@@ -69,6 +71,8 @@ mysql> describe t_dept;
 | descri      | varchar(20) | YES  |     | NULL    |       |
 +-------------+-------------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
+
+![](https://github.com/spicychicken9/-/blob/master/3.png)
 
 # 3.修改字段数据类型；
 
@@ -106,6 +110,8 @@ mysql> describe t_dept;
 +-------------+-------------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
 
+![](https://github.com/spicychicken9/-/blob/master/4.png)
+
 # 4.创建表格t_dept2；
 
 mysql> create table t_dept2(
@@ -124,6 +130,8 @@ mysql> describe t_dept2;
 | loc    | varchar(40) | YES  |     | NULL    |       |
 +--------+-------------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
+
+![](https://github.com/spicychicken9/-/blob/master/5.png)
 
 # 5.向数据表t_dept和t_dept2中插入数据；
 
@@ -156,6 +164,7 @@ mysql> select * FROM t_dept2;
 |      1 | myName_t2 | Hangzhou_t2 |
 +--------+-----------+-------------+
 2 rows in set (0.00 sec)
+
 
 # 6.删除表t_dept数据，添加PRIMARY KEY 约束，再插入数据；
 
@@ -192,6 +201,8 @@ mysql> show tables;
 | t_dept2            |
 +--------------------+
 2 rows in set (0.00 sec)
+
+![](https://github.com/spicychicken9/-/blob/master/6.png)
 
 ```
 
@@ -287,6 +298,8 @@ mysql> select * from t_employee t1 inner join t_employee t2 on t1.empno = t2.mgr
 
 ```
 
+![](https://github.com/spicychicken9/-/blob/master/7.png)
+
 ## 四、用join完成查询
 
 ## 五、运行演示的存储过程和函数
@@ -341,6 +354,10 @@ mysql> SELECT func_employee_sal(7369);
 |                     800 |
 +-------------------------+
 1 row in set (0.00 sec)
+
+```
+
+![](https://github.com/spicychicken9/-/blob/master/8.png)
 
 
 
